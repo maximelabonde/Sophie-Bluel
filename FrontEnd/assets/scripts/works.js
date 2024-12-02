@@ -3,7 +3,7 @@ const sectionFiche = document.querySelector(".gallery");
 
 async function worksGet() {
     const works = await fetch('http://localhost:5678/api/works')
-    .then(response => response.json());
+        .then(response => response.json());
     for (let i = 0; i < works.length; i++) {
         const worksElement = document.createElement("figure");
         const imgElement = document.createElement("img");
