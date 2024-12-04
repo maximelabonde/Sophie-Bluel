@@ -1,16 +1,20 @@
-const loginButton = document.querySelector("#login-btn");
-loginButton.style.cursor = "pointer";
+const editMode = document.querySelector("#edit-mode");
+const editBtn = document.querySelector(".edit-btn")
+const loginBtn = document.querySelector("#login-btn");
+loginBtn.style.cursor = "pointer";
 
 function loginLogout() {
     if (localStorage.getItem("token")) {
-        loginButton.textContent = "logout"
+        loginBtn.textContent = "logout"
+        editMode.style.display = "flex"
+        editBtn.style.display = "flex"
     }
 }
 
 loginLogout();
 
-loginButton.addEventListener("click", function () {
-    if (loginButton.textContent === "login") {
+loginBtn.addEventListener("click", () => {
+    if (loginBtn.textContent === "login") {
         window.location = "login.html"
     } else {
         localStorage.removeItem("token")

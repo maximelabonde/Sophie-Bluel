@@ -108,6 +108,15 @@ footer.login {
 	bottom: 0;
 	right: 75px;
 }
+#edit-mode {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	gap: 11px;
+	height: 59px;
+	background-color: black;
+	color: white;
+}
 #introduction {
 	display: flex;
 	align-items: center;
@@ -131,9 +140,16 @@ footer.login {
 #introduction p {
 	margin-bottom: 0.5em;
 }
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+#portfolio .title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 31px;
+	margin-bottom: 92px;
+}
+#portfolio .edit-btn {
+	display: none;
+	gap: 10px;
 }
 .gallery {
 	width: 100%;

@@ -4,20 +4,25 @@ const form = {
     submit: document.querySelector("#login-submit"),
 };
 
-let button = form.submit.addEventListener("click", (e) => {
+const button = form.submit.addEventListener("click", (e) => {
     e.preventDefault();
-
-    fetch("http://localhost:5678/api/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: form.email.value,
-            password: form.password.value,
-        })
-    }).then((response) => response.json())
-        .then(data => {
-            console.log(data)
-            localStorage.setItem("token", data.token)
-            window.location = "index.html"
-        })
+    if (form.email.value !== "sophie.bluel@test.tld") {
+        alert("Email incorrect")
+    } else if (form.password.value !== "S0phie") {
+        alert("Mot de passe incorrect")
+    } else {
+        fetch("http://localhost:5678/api/users/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                email: form.email.value,
+                password: form.password.value,
+            })
+        }).then((response) => response.json())
+            .then(data => {
+                console.log(data)
+                localStorage.setItem("token", data.token)
+                window.location = "index.html"
+            })
+    }
 })

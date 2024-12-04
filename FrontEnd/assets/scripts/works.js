@@ -9,10 +9,10 @@ async function worksGet() {
         const titleElement = document.createElement("figcaptionp")
         imgElement.src = works[i].imageUrl;
         titleElement.innerText = works[i].title;
-
         sectionFiche.appendChild(worksElement)
         worksElement.appendChild(imgElement)
         worksElement.appendChild(titleElement)
     }
 }
+
 worksGet()
