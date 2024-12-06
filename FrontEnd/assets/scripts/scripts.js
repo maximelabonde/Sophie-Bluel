@@ -1,9 +1,9 @@
+const loginBtn = document.querySelector("#login-btn");
 const editMode = document.querySelector("#edit-mode");
 const editBtn = document.querySelector(".edit-btn")
-const loginBtn = document.querySelector("#login-btn");
-loginBtn.style.cursor = "pointer";
+const modal = document.querySelector("#modal")
 
-function loginLogout() {
+function loginAction() {
     if (localStorage.getItem("token")) {
         loginBtn.textContent = "logout"
         editMode.style.display = "flex"
@@ -11,7 +11,7 @@ function loginLogout() {
     }
 }
 
-loginLogout();
+loginAction();
 
 loginBtn.addEventListener("click", () => {
     if (loginBtn.textContent === "login") {

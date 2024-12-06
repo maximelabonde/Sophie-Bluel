@@ -1,4 +1,5 @@
 const sectionFiche = document.querySelector(".gallery");
+const exitBtn = document.querySelector(".fa-solid")
 
 async function worksGet() {
     const works = await fetch('http://localhost:5678/api/works')
@@ -16,3 +17,10 @@ async function worksGet() {
 }
 
 worksGet()
+
+editBtn.addEventListener("click", () => {
+    modal.style.display = "flex"
+})
+exitBtn.addEventListener("click", () => {
+    modal.style.display = "none"
+})

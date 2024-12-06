@@ -20,7 +20,6 @@ const button = form.submit.addEventListener("click", (e) => {
             })
         }).then((response) => response.json())
             .then(data => {
-                console.log(data)
                 localStorage.setItem("token", data.token)
                 window.location = "index.html"
             })
