@@ -267,6 +267,7 @@ li:hover {
 	display: none;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	position: fixed;
 	left: 0;
 	top: 0;
@@ -275,12 +276,20 @@ li:hover {
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
-#modal>div {
+#modal .box {
 	position: relative;
 	background-color: white;
 	width: 630px;
 	height: 688px;
 	border-radius: 10px;
+}
+
+#modal .remove {
+	display: block;
+}
+
+#modal .add {
+	display: none;
 }
 
 #modal .fa-solid {
@@ -291,13 +300,71 @@ li:hover {
 	top: 0;
 }
 
+#modal .add .fa-solid {
+	right: auto;
+	left: 0;
+}
+
+#modal .projects-remove, .projects-add {
+	justify-self: center;
+	width: 420px;
+	height: 445px;
+	border-bottom: solid 1px #B3B3B3;
+}
+
+#modal form {
+	text-align: left;
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#modal label {
+	margin: 2em 0 1em 0;
+}
+
+#modal .projects-add>div {
+	display: flex;
+	flex-direction: column;
+	width: 420px;
+	height: 169px;
+	background-color: #E8F1F6;
+}
+
+#modal .projects-add .fa-regular {
+	scale: 3;
+	color: #B9C5CC;
+	margin-top: 55px;
+}
+
+#modal input, select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
 #modal h3 {
 	font-size: 26px;
 	text-align: center;
-	margin-top: 46px;
+	margin-block: 46px;
+}
+
+#modal input[type="submit"] {
+	width: 237px;
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#modal p {
+	margin-top: 86px;
+	color: #444444;
 }
 
 input[type="submit"] {
+	cursor: pointer;
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -308,8 +375,24 @@ input[type="submit"] {
 	border-radius: 60px;
 }
 
-input[type="submit"]:hover {
+input[value="submit"]:hover {
 	background-color: #0E2F28;
+}
+
+.projects-add #photo {
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 182px;
+	background-color: #CBD6DC;
+	color: #306685;
+	max-height: 36px;
+	font-family: 'Work Sans';
+	font-weight: 500;
+}
+
+.projects-add input[value="Valider"] {
+	margin-top: 65px;
 }
 
 footer nav ul {

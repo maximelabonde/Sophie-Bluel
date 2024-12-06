@@ -7,9 +7,9 @@ const form = {
 const button = form.submit.addEventListener("click", (e) => {
     e.preventDefault();
     if (form.email.value !== "sophie.bluel@test.tld") {
-        alert("Email incorrect")
+        alert("Email incorrect");
     } else if (form.password.value !== "S0phie") {
-        alert("Mot de passe incorrect")
+        alert("Mot de passe incorrect");
     } else {
         fetch("http://localhost:5678/api/users/login", {
             method: "POST",
@@ -17,11 +17,12 @@ const button = form.submit.addEventListener("click", (e) => {
             body: JSON.stringify({
                 email: form.email.value,
                 password: form.password.value,
-            })
-        }).then((response) => response.json())
-            .then(data => {
-                localStorage.setItem("token", data.token)
-                window.location = "index.html"
-            })
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                localStorage.setItem("token", data.token);
+                window.location = "index.html";
+            });
     }
-})
+});
