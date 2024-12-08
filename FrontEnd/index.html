@@ -76,6 +76,7 @@
 			</form>
 		</section>
 	</main>
+
 	<div id="modal">
 		<div class="box">
 			<i class="fa-solid fa-xmark fa-xl"></i>
@@ -87,7 +88,7 @@
 				<input id="add-btn" type="submit" value="Ajouter une photo">
 			</div>
 			<div class="add">
-				<i class="fa-solid fa-arrow-left fa-xl"></i>
+				<i class="fa-solid fa-arrow-left fa-2xl"></i>
 				<h3>Ajout photo</h3>
 				<div class="projects-add">
 					<div>
@@ -95,18 +96,21 @@
 						<p>jpg, png : 4mo max</p>
 					</div>
 					<form action="#" method="post">
-						<input type="submit" value="+ Ajouter photo" id="photo">
+						<input type="file" name="photo" id="modal-photo" accept="image/png, image/jpeg">
+						<label for="photo">+ Ajouter photo</label>
 						<label for="title">Titre</label>
-						<input type="text" name="title" id="title">
+						<input type="text" name="title" id="modal-title">
 						<label for="categories">Catégorie</label>
-						<select name="categories" id="categories">
-
+						<select name="categories" id="modal-categories">
+							<option value=""></option>
 						</select>
 						<input id="add-submit" type="submit" value="Valider">
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<footer>
 		<nav>
 			<ul>
