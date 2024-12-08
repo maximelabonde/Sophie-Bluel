@@ -398,6 +398,10 @@ input[type="submit"] {
 	border-radius: 60px;
 }
 
+input[type="file"]::-webkit-file-upload-button {
+	display: none;
+}
+
 input[value="submit"]:hover {
 	background-color: #0E2F28;
 }
