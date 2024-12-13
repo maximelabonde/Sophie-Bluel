@@ -1,5 +1,3 @@
-const token = localStorage.getItem("token");
-
 async function worksGet() {
     const works = await fetch("http://localhost:5678/api/works").then(
         (response) => response.json()

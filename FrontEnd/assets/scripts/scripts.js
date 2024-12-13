@@ -12,9 +12,10 @@ const editMode = document.querySelector("#edit-mode");
 const modalSubmit = document.querySelector("#add-submit");
 const modalForm = document.querySelector("#modal-form");
 const modalGallery = document.querySelector(".projects-remove");
+const token = localStorage.getItem("token");
 
 function loginAction() {
-    if (localStorage.getItem("token")) {
+    if (token) {
         loginBtn.textContent = "logout";
         modalEditBtn.style.display = "flex";
         editMode.style.display = "flex";
