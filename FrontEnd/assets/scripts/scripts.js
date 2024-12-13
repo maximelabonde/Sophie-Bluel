@@ -9,12 +9,15 @@ const modalReturnBtn = document.querySelector(".fa-arrow-left");
 const modalAddBtn = document.querySelector("#add-btn");
 const loginBtn = document.querySelector("#login-btn");
 const editMode = document.querySelector("#edit-mode");
+const modalSubmit = document.querySelector("#add-submit");
+const modalForm = document.querySelector("#modal-form");
+const modalGallery = document.querySelector(".projects-remove");
 
 function loginAction() {
     if (localStorage.getItem("token")) {
         loginBtn.textContent = "logout";
         modalEditBtn.style.display = "flex";
-        modalEditBtn.style.display = "flex";
+        editMode.style.display = "flex";
     }
 }
 
