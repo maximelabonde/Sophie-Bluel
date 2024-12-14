@@ -328,6 +328,7 @@ li:hover {
 }
 
 #modal .projects-add>div {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	width: 420px;
@@ -339,6 +340,14 @@ li:hover {
 	transform: scale(2);
 	color: #B9C5CC;
 	margin-top: 55px;
+}
+
+#modal .projects-add img {
+	display: none;
+	position: absolute;
+	width: 30%;
+	z-index: 2;
+	right: 35%;
 }
 
 #modal .projects-remove {
@@ -393,7 +402,7 @@ input[type="file"]::-webkit-file-upload-button{
 	display: none;
 }
 
-label[for="modal-photo"] {
+label[for="modal-img"] {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -432,11 +441,11 @@ input[value="submit"]:hover {
 	background-color: #0E2F28;
 }
 
-.projects-add #modal-photo {
+.projects-add #modal-img {
 	opacity: 0;
 	cursor: pointer;
 	position: absolute;
-	z-index: 1;
+	z-index: 3;
 	top: 182px;
 	left: 0;
 	right: 0;
