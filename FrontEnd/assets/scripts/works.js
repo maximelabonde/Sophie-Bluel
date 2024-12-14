@@ -135,15 +135,18 @@ modalForm.addEventListener("submit", (e) => {
 });
 
 //bouton pour afficher la modale
+//bouton pour afficher la modale
 modalEditBtn.addEventListener("click", () => {
     modal.style.display = "flex";
 });
 
 //bouton pour quitter la modale
+//bouton pour quitter la modale
 modalExitBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
+//bouton pour revenir dans la galerie de la modale
 //bouton pour revenir dans la galerie de la modale
 modalReturnBtn.addEventListener("click", () => {
     modalAdd.style.display = "none";
