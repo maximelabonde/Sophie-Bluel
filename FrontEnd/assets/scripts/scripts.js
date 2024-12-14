@@ -6,9 +6,13 @@ const modalEditBtn = document.querySelector(".edit-btn");
 const modalExitBtn = document.querySelector(".fa-xmark");
 const modalReturnBtn = document.querySelector(".fa-arrow-left");
 const modalAddBtn = document.querySelector("#add-btn");
-const modalSubmit = document.querySelector("#add-submit");
 const modalForm = document.querySelector("#modal-form");
 const modalGallery = document.querySelector(".projects-remove");
+const modalImgBtn = document.querySelector("#modal-img");
+const modalImgPreview = document.querySelector("#modal-img-preview");
+const modalImgSubtitle = document.querySelector("#modal-img-subtitle");
+const modalImgLabel = document.querySelector("#modal-img-label");
+const modalSubmit = document.querySelector("#add-submit")
 
 //variables de la page d'accueil
 const sectionFiche = document.querySelector(".gallery");

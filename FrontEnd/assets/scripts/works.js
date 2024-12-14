@@ -129,24 +129,37 @@ async function workAdd(e) {
     }
 }
 
+//bouton pour ajouter un projet
 modalForm.addEventListener("submit", (e) => {
     workAdd(e);
 });
 
+//bouton pour afficher la modale
 modalEditBtn.addEventListener("click", () => {
     modal.style.display = "flex";
 });
 
+//bouton pour quitter la modale
 modalExitBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
+//bouton pour revenir dans la galerie de la modale
 modalReturnBtn.addEventListener("click", () => {
     modalAdd.style.display = "none";
     modalRemove.style.display = "block";
 });
 
+//bouton pour afficher le formulaire pour ajouter un projet
 modalAddBtn.addEventListener("click", () => {
     modalRemove.style.display = "none";
     modalAdd.style.display = "block";
+});
+
+//affichage de la pré-visualisation de l'image
+modalImgBtn.addEventListener("change", (e) => {
+    modalImgPreview.src = URL.createObjectURL(e.target.files[0]);
+    modalImgSubtitle.style.display = "none";
+    modalImgLabel.style.display = "none";
+    modalImgPreview.style.display = "block";
 });
