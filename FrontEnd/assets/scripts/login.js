@@ -1,28 +1,36 @@
-const form = {
-    email: document.querySelector("#login-email"),
-    password: document.querySelector("#login-password"),
-    submit: document.querySelector("#login-submit"),
-};
-
-const button = form.submit.addEventListener("click", (e) => {
+//fonction pour verifier 
+async function loginAuth(e) {
     e.preventDefault();
-    if (form.email.value !== "sophie.bluel@test.tld") {
-        alert("Email incorrect");
-    } else if (form.password.value !== "S0phie") {
-        alert("Mot de passe incorrect");
-    } else {
-        fetch("http://localhost:5678/api/users/login", {
+    const form = {
+        email: document.querySelector("#login-email"),
+        password: document.querySelector("#login-password"),
+        submit: document.querySelector("#login-submit"),
+    };
+    try {
+        const response = await fetch("http://localhost:5678/api/users/login", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 email: form.email.value,
                 password: form.password.value,
             }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                localStorage.setItem("token", data.token);
-                window.location = "index.html";
-            });
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!response.ok) {
+            throw new Error(
+                `Erreur : ${response.status} ${response.statusText}`
+            );
+        } else {
+            const data = await response.json();
+            localStorage.setItem("token", data.token);
+            window.location = "index.html";
+        }
+    } catch (error) {
+        console.error("Erreur lors de la connexion:", error);
     }
+}
+
+loginForm.addEventListener("submit", (e) => {
+    loginAuth(e);
 });
