@@ -43,11 +43,44 @@ function worksRefresh() {
     modalWorksGet();
 }
 
+function checkIfFormIsValide() {
+    if (!modalImgBtn.value || !modalCategories.value || !modalTitle.value) {
+        modalSubmit.disabled = true;
+        modalSubmit.style.background = "#A7A7A7";
+    } else {
+        modalSubmit.disabled = false;
+        modalSubmit.style.background = "#1D6154";
+    }
+}
+
+function formReset() {
+    modalCategories.getElementsByTagName('option')[0].selected = 'selected'
+    modalTitle.value = "";
+    modalImgBtn.value = "";
+    modalImgPreview.src = "#";
+    modalImgPreview.style.display = "none";
+    modalImgLabel.style.display = "flex";
+    modalImgSubtitle.style.display = "block";
+    checkIfFormIsValide();
+}
+
+let data = []; 
+
+async function loadProjects() {
+  const response = await fetch('http://localhost:5678/api/works'); 
+  data = await response.json(); 
+}
+
+loadProjects().then(() => {
+    console.log("data", data);
+  });
+
 //fonction pour récupérer les projets et les intégrer dans la galerie
 async function worksGet() {
     const works = await fetch("http://localhost:5678/api/works").then(
         (response) => response.json()
     );
+    test = works;
     for (let i = 0; i < works.length; i++) {
         const worksElement = document.createElement("figure");
         const imgElement = document.createElement("img");
@@ -144,6 +177,7 @@ async function workAdd(e) {
             );
         } else {
             worksRefresh();
+            formReset();
         }
     } catch (error) {
         console.error("Erreur lors de l'ajout du projet:", error);
@@ -171,7 +205,7 @@ modalReturnBtn.addEventListener("click", () => {
     modalRemove.style.display = "block";
 });
 
-//bouton pour afficher le formulaire pour ajouter un projet
+//bouton pour afficher le formulaire de la modale
 modalAddBtn.addEventListener("click", () => {
     modalRemove.style.display = "none";
     modalAdd.style.display = "block";
@@ -185,12 +219,7 @@ modalImgBtn.addEventListener("change", (e) => {
     modalImgPreview.style.display = "block";
 });
 
+//blocage du bouton en cas de formulaire incomplet
 modalForm.addEventListener("change", () => {
-    if (!modalImgBtn.value || !modalCategories.value || !modalTitle.value) {
-        modalSubmit.disabled = true;
-        modalSubmit.style.background = "#A7A7A7";
-    } else {
-        modalSubmit.disabled = false;
-        modalSubmit.style.background = "#1D6154";
-    }
+    checkIfFormIsValide();
 });

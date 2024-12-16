@@ -463,7 +463,7 @@ input[type="file"]::-webkit-file-upload-button {
 	display: none;
 }
 
-input[value="submit"]:hover {
+input[type="submit"]:hover {
 	background-color: #0E2F28;
 }
 

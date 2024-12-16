@@ -4,7 +4,7 @@ const loginBtn = document.querySelector("#login-btn");
 //variable du token d'authentification
 const token = localStorage.getItem("token");
 
-//bouton de connexion
+//bouton de connexion/déconnexion
 loginBtn.addEventListener("click", () => {
     if (!token) {
         window.location = "login.html";

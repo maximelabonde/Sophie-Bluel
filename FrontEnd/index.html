@@ -35,7 +35,7 @@
 		</nav>
 	</header>
 	<main>
-		<section id="introduction">
+		<div id="introduction">
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="">
 			</figure>
@@ -49,17 +49,17 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
 			</article>
-		</section>
+		</div>
 		<section id="portfolio">
 			<div class="title">
 				<h2>Mes Projets</h2>
 				<div class="edit-btn">
 					<i class="fa-regular fa-pen-to-square"></i>
-					<p>Mode édition</p>
+					<p>modifier</p>
 				</div>
 			</div>
 			<div class="gallery-filters">
-				<button class="filter-btn filter-btn-active">Tous</button>
+				<button value="" class="filter-btn filter-btn-active">Tous</button>
 				<button class="filter-btn">Objets</button>
 				<button class="filter-btn">Appartements</button>
 				<button class="filter-btn">Hotels & restaurants</button>
@@ -98,7 +98,7 @@
 				<h3>Ajout photo</h3>
 				<div class="projects-add">
 					<div>
-						<img id="modal-img-preview" src="" alt="Preview">
+						<img id="modal-img-preview" src="#" alt="Preview">
 						<i class="fa-regular fa-image fa-2xl"></i>
 						<p id="modal-img-subtitle">jpg, png : 4mo max</p>
 					</div>
@@ -109,7 +109,7 @@
 						<input type="text" name="title" id="modal-title">
 						<label for="modal-categories">Catégorie</label>
 						<select name="category" id="modal-categories">
-							<option value=""></option>
+							<option value="">&nbsp;</option>
 						</select>
 						<input id="add-submit" type="submit" value="Valider" disabled>
 					</form>
