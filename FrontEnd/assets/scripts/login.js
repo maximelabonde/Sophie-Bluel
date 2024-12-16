@@ -1,4 +1,6 @@
-//fonction pour verifier
+const loginForm = document.querySelector("#login-form");
+
+//fonction pour verifier la connexion
 async function loginAuth(e) {
     e.preventDefault();
     const form = {
@@ -30,6 +32,7 @@ async function loginAuth(e) {
     }
 }
 
+//bouton de connexion
 loginForm.addEventListener("submit", (e) => {
     loginAuth(e);
 });
