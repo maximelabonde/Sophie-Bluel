@@ -1,3 +1,25 @@
+//variables des éléments de la modale
+const modalRemove = document.querySelector(".remove");
+const modalAdd = document.querySelector(".add");
+const modalCategories = document.querySelector("#modal-categories");
+const modalEditBtn = document.querySelector(".edit-btn");
+const modalExitBtn = document.querySelector(".fa-xmark");
+const modalReturnBtn = document.querySelector(".fa-arrow-left");
+const modalAddBtn = document.querySelector("#add-btn");
+const modalForm = document.querySelector("#modal-form");
+const modalGallery = document.querySelector(".projects-remove");
+const modalImgBtn = document.querySelector("#modal-img");
+const modalImgPreview = document.querySelector("#modal-img-preview");
+const modalImgSubtitle = document.querySelector("#modal-img-subtitle");
+const modalImgLabel = document.querySelector("#modal-img-label");
+const modalSubmit = document.querySelector("#add-submit");
+const modalTitle = document.querySelector("#modal-title");
+
+//variables de la page d'accueil
+const worksFilters = document.querySelector(".gallery-filters");
+const worksGallery = document.querySelector(".gallery");
+const editMode = document.querySelector("#edit-mode");
+
 //fonction pour changer la page d'acceuil si le token est dans le localStorage
 function indexChanges() {
     if (token) {
@@ -161,4 +183,14 @@ modalImgBtn.addEventListener("change", (e) => {
     modalImgSubtitle.style.display = "none";
     modalImgLabel.style.display = "none";
     modalImgPreview.style.display = "block";
+});
+
+modalForm.addEventListener("change", () => {
+    if (!modalImgBtn.value || !modalCategories.value || !modalTitle.value) {
+        modalSubmit.disabled = true;
+        modalSubmit.style.background = "#A7A7A7";
+    } else {
+        modalSubmit.disabled = false;
+        modalSubmit.style.background = "#1D6154";
+    }
 });

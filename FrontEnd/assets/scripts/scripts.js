@@ -1,34 +1,12 @@
-//variables des elements de la modale
-const modalRemove = document.querySelector(".remove");
-const modalAdd = document.querySelector(".add");
-const modalCategories = document.querySelector("#modal-categories");
-const modalEditBtn = document.querySelector(".edit-btn");
-const modalExitBtn = document.querySelector(".fa-xmark");
-const modalReturnBtn = document.querySelector(".fa-arrow-left");
-const modalAddBtn = document.querySelector("#add-btn");
-const modalForm = document.querySelector("#modal-form");
-const modalGallery = document.querySelector(".projects-remove");
-const modalImgBtn = document.querySelector("#modal-img");
-const modalImgPreview = document.querySelector("#modal-img-preview");
-const modalImgSubtitle = document.querySelector("#modal-img-subtitle");
-const modalImgLabel = document.querySelector("#modal-img-label");
-const modalSubmit = document.querySelector("#add-submit");
-
-//variables de la page d'accueil
-const worksFilters = document.querySelector(".gallery-filters");
-const worksGallery = document.querySelector(".gallery");
-const editMode = document.querySelector("#edit-mode");
-
-//variables de la page de connexion
-const loginForm = document.querySelector("#login-form");
+//variable du bouton de connexion
 const loginBtn = document.querySelector("#login-btn");
 
 //variable du token d'authentification
 const token = localStorage.getItem("token");
 
-//bouton de deconnexion
+//bouton de connexion
 loginBtn.addEventListener("click", () => {
-    if (loginBtn.textContent === "login") {
+    if (!token) {
         window.location = "login.html";
     } else {
         localStorage.removeItem("token");
