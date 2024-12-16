@@ -12,10 +12,11 @@ const modalImgBtn = document.querySelector("#modal-img");
 const modalImgPreview = document.querySelector("#modal-img-preview");
 const modalImgSubtitle = document.querySelector("#modal-img-subtitle");
 const modalImgLabel = document.querySelector("#modal-img-label");
-const modalSubmit = document.querySelector("#add-submit")
+const modalSubmit = document.querySelector("#add-submit");
 
 //variables de la page d'accueil
-const sectionFiche = document.querySelector(".gallery");
+const worksFilters = document.querySelector(".gallery-filters");
+const worksGallery = document.querySelector(".gallery");
 const editMode = document.querySelector("#edit-mode");
 
 //variables de la page de connexion

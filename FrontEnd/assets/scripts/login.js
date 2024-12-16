@@ -1,10 +1,9 @@
-//fonction pour verifier 
+//fonction pour verifier
 async function loginAuth(e) {
     e.preventDefault();
     const form = {
         email: document.querySelector("#login-email"),
         password: document.querySelector("#login-password"),
-        submit: document.querySelector("#login-submit"),
     };
     try {
         const response = await fetch("http://localhost:5678/api/users/login", {

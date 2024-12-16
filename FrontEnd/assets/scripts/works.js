@@ -4,9 +4,22 @@ function indexChanges() {
         loginBtn.textContent = "logout";
         modalEditBtn.style.display = "flex";
         editMode.style.display = "flex";
+        worksFilters.style.display = "none";
     }
 }
 indexChanges();
+
+//fonction pour rafraichir la liste des projets
+function worksRefresh() {
+    while (worksGallery.hasChildNodes()) {
+        worksGallery.removeChild(worksGallery.firstChild);
+    }
+    while (modalGallery.hasChildNodes()) {
+        modalGallery.removeChild(modalGallery.firstChild);
+    }
+    worksGet();
+    modalWorksGet();
+}
 
 //fonction pour récupérer les projets et les intégrer dans la galerie
 async function worksGet() {
@@ -19,29 +32,15 @@ async function worksGet() {
         const titleElement = document.createElement("figcaptionp");
         imgElement.src = works[i].imageUrl;
         titleElement.innerText = works[i].title;
-        sectionFiche.appendChild(worksElement);
+        worksGallery.appendChild(worksElement);
         worksElement.appendChild(imgElement);
         worksElement.appendChild(titleElement);
     }
 }
 worksGet();
 
-//fonction pour récupérer les categories du formulaire de la modale
-async function modalCategoriesGet() {
-    const categories = await fetch("http://localhost:5678/api/categories").then(
-        (response) => response.json()
-    );
-    for (let i = 0; i < categories.length; i++) {
-        const categoriesOptions = document.createElement("option");
-        categoriesOptions.value = categories[i].id;
-        categoriesOptions.innerText = categories[i].name;
-        modalCategories.appendChild(categoriesOptions);
-    }
-}
-modalCategoriesGet();
-
 //fonction pour récupérer les projets et les intégrer dans la galerie de la modale
-async function worksModalGet() {
+async function modalWorksGet() {
     const works = await fetch("http://localhost:5678/api/works").then(
         (response) => response.json()
     );
@@ -77,14 +76,7 @@ async function worksModalGet() {
                         `Erreur : ${response.status} ${response.statusText}`
                     );
                 } else {
-                    while (sectionFiche.hasChildNodes()) {
-                        sectionFiche.removeChild(sectionFiche.firstChild);
-                    }
-                    while (modalGallery.hasChildNodes()) {
-                        modalGallery.removeChild(modalGallery.firstChild);
-                    }
-                    worksGet();
-                    worksModalGet();
+                    worksRefresh();
                 }
             } catch (error) {
                 console.error("Erreur lors de la suppresion du projet:", error);
@@ -92,7 +84,21 @@ async function worksModalGet() {
         });
     }
 }
-worksModalGet();
+modalWorksGet();
+
+//fonction pour récupérer les categories du formulaire de la modale
+async function modalCategoriesGet() {
+    const categories = await fetch("http://localhost:5678/api/categories").then(
+        (response) => response.json()
+    );
+    for (let i = 0; i < categories.length; i++) {
+        const categoriesOptions = document.createElement("option");
+        categoriesOptions.value = categories[i].id;
+        categoriesOptions.innerText = categories[i].name;
+        modalCategories.appendChild(categoriesOptions);
+    }
+}
+modalCategoriesGet();
 
 //fonction pour ajouter un projet via le formulaire de la modale
 async function workAdd(e) {
@@ -115,14 +121,7 @@ async function workAdd(e) {
                 `Erreur : ${response.status} ${response.statusText}`
             );
         } else {
-            while (sectionFiche.hasChildNodes()) {
-                sectionFiche.removeChild(sectionFiche.firstChild);
-            }
-            while (modalGallery.hasChildNodes()) {
-                modalGallery.removeChild(modalGallery.firstChild);
-            }
-            worksGet();
-            worksModalGet();
+            worksRefresh();
         }
     } catch (error) {
         console.error("Erreur lors de l'ajout du projet:", error);
@@ -135,18 +134,15 @@ modalForm.addEventListener("submit", (e) => {
 });
 
 //bouton pour afficher la modale
-//bouton pour afficher la modale
 modalEditBtn.addEventListener("click", () => {
     modal.style.display = "flex";
 });
 
 //bouton pour quitter la modale
-//bouton pour quitter la modale
 modalExitBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
-//bouton pour revenir dans la galerie de la modale
 //bouton pour revenir dans la galerie de la modale
 modalReturnBtn.addEventListener("click", () => {
     modalAdd.style.display = "none";
