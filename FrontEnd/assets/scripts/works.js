@@ -19,8 +19,9 @@ const modalTitle = document.querySelector("#modal-title");
 const worksFilters = document.querySelector(".gallery-filters");
 const worksGallery = document.querySelector(".gallery");
 const editMode = document.querySelector("#edit-mode");
+const filtersBtn = document.querySelectorAll(".filter-btn");
 
-//fonction pour changer la page d'acceuil si le token est dans le localStorage
+//changer la page d'accueil si le token est dans le localStorage
 function indexChanges() {
     if (token) {
         loginBtn.textContent = "logout";
@@ -31,18 +32,50 @@ function indexChanges() {
 }
 indexChanges();
 
-//fonction pour rafraichir la liste des projets
-function worksRefresh() {
+//récupérer les projets du back-end
+async function worksLoad() {
+    try {
+        const response = await fetch("http://localhost:5678/api/works");
+        if (!response.ok) {
+            `Erreur : ${response.status} ${response.statusText}`;
+        } else {
+            data = await response.json();
+        }
+    } catch (error) {
+        console.error("Erreur lors de la récupération des projets:", error);
+    }
+}
+
+//faire disparaitre les projects de la page d'accueil
+function worksRemove() {
     while (worksGallery.hasChildNodes()) {
         worksGallery.removeChild(worksGallery.firstChild);
     }
+}
+
+//faire disparaitre les projets de la modale
+function modalWorksRemove() {
     while (modalGallery.hasChildNodes()) {
         modalGallery.removeChild(modalGallery.firstChild);
     }
+}
+
+//supprimer la classe "actif" des boutons de filtre
+function filterClassRemove() {
+    for (let i = 0; i < filtersBtn.length; i++) {
+        filtersBtn[i].classList.remove("filter-btn-active");
+    }
+}
+
+//rafraichir la liste des projets
+function worksRefresh() {
+    modalWorksRemove();
+    worksRemove();
     worksGet();
     modalWorksGet();
 }
 
+//verifier si le formulaire de la modale est valide
 function checkIfFormIsValide() {
     if (!modalImgBtn.value || !modalCategories.value || !modalTitle.value) {
         modalSubmit.disabled = true;
@@ -53,8 +86,9 @@ function checkIfFormIsValide() {
     }
 }
 
+//réinitialiser le formulaire de la modale
 function formReset() {
-    modalCategories.getElementsByTagName('option')[0].selected = 'selected'
+    modalCategories.getElementsByTagName("option")[0].selected = "selected";
     modalTitle.value = "";
     modalImgBtn.value = "";
     modalImgPreview.src = "#";
@@ -64,84 +98,104 @@ function formReset() {
     checkIfFormIsValide();
 }
 
-let data = []; 
-
-async function loadProjects() {
-  const response = await fetch('http://localhost:5678/api/works'); 
-  data = await response.json(); 
+//filtrer les projets par catégories
+function worksFilter(category) {
+    worksLoad().then(() => {
+        let filteredData;
+        if (category === 1) {
+            filteredData = data.filter(function (work) {
+                return work.categoryId === 1;
+            });
+        } else if (category === 2) {
+            filteredData = data.filter(function (work) {
+                return work.categoryId === 2;
+            });
+        } else if (category === 3) {
+            filteredData = data.filter(function (work) {
+                return work.categoryId === 3;
+            });
+        }
+        worksRemove();
+        for (let i = 0; i < filteredData.length; i++) {
+            const worksElement = document.createElement("figure");
+            const imgElement = document.createElement("img");
+            const titleElement = document.createElement("figcaptionp");
+            imgElement.src = filteredData[i].imageUrl;
+            titleElement.innerText = filteredData[i].title;
+            worksGallery.appendChild(worksElement);
+            worksElement.appendChild(imgElement);
+            worksElement.appendChild(titleElement);
+        }
+    });
 }
 
-loadProjects().then(() => {
-    console.log("data", data);
-  });
-
-//fonction pour récupérer les projets et les intégrer dans la galerie
-async function worksGet() {
-    const works = await fetch("http://localhost:5678/api/works").then(
-        (response) => response.json()
-    );
-    test = works;
-    for (let i = 0; i < works.length; i++) {
-        const worksElement = document.createElement("figure");
-        const imgElement = document.createElement("img");
-        const titleElement = document.createElement("figcaptionp");
-        imgElement.src = works[i].imageUrl;
-        titleElement.innerText = works[i].title;
-        worksGallery.appendChild(worksElement);
-        worksElement.appendChild(imgElement);
-        worksElement.appendChild(titleElement);
-    }
+//intégrer les projets dans la galerie de la page d'accueil
+function worksGet() {
+    worksLoad().then(() => {
+        for (let i = 0; i < data.length; i++) {
+            const worksElement = document.createElement("figure");
+            const imgElement = document.createElement("img");
+            const titleElement = document.createElement("figcaptionp");
+            imgElement.src = data[i].imageUrl;
+            titleElement.innerText = data[i].title;
+            worksGallery.appendChild(worksElement);
+            worksElement.appendChild(imgElement);
+            worksElement.appendChild(titleElement);
+        }
+    });
 }
 worksGet();
 
-//fonction pour récupérer les projets et les intégrer dans la galerie de la modale
-async function modalWorksGet() {
-    const works = await fetch("http://localhost:5678/api/works").then(
-        (response) => response.json()
-    );
-    for (let i = 0; i < works.length; i++) {
-        const worksElement = document.createElement("figure");
-        const imgElement = document.createElement("img");
-        const iconElement = document.createElement("i");
-        imgElement.src = works[i].imageUrl;
-        worksElement.id = works[i].id;
-        iconElement.classList.add("fa-solid", "fa-trash-can");
-        modalGallery.appendChild(worksElement);
-        worksElement.appendChild(imgElement);
-        worksElement.appendChild(iconElement);
+//intégrer les projets dans la galerie de la modale
+function modalWorksGet() {
+    worksLoad().then(() => {
+        for (let i = 0; i < data.length; i++) {
+            const worksElement = document.createElement("figure");
+            const imgElement = document.createElement("img");
+            const iconElement = document.createElement("i");
+            imgElement.src = data[i].imageUrl;
+            worksElement.id = data[i].id;
+            iconElement.classList.add("fa-solid", "fa-trash-can");
+            modalGallery.appendChild(worksElement);
+            worksElement.appendChild(imgElement);
+            worksElement.appendChild(iconElement);
 
-        //bouton pour supprimer un projet
-        iconElement.addEventListener("click", async function () {
-            if (!token) {
-                console.error("Token non trouvé");
-                return;
-            }
-            try {
-                const response = await fetch(
-                    "http://localhost:5678/api/works/" + worksElement.id,
-                    {
-                        method: "DELETE",
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                if (!response.ok) {
-                    throw new Error(
-                        `Erreur : ${response.status} ${response.statusText}`
-                    );
-                } else {
-                    worksRefresh();
+            //bouton pour supprimer un projet du back-end
+            iconElement.addEventListener("click", async function () {
+                if (!token) {
+                    console.error("Token non trouvé");
+                    return;
                 }
-            } catch (error) {
-                console.error("Erreur lors de la suppresion du projet:", error);
-            }
-        });
-    }
+                try {
+                    const response = await fetch(
+                        "http://localhost:5678/api/works/" + worksElement.id,
+                        {
+                            method: "DELETE",
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                        }
+                    );
+                    if (!response.ok) {
+                        throw new Error(
+                            `Erreur : ${response.status} ${response.statusText}`
+                        );
+                    } else {
+                        worksRefresh();
+                    }
+                } catch (error) {
+                    console.error(
+                        "Erreur lors de la suppresion du projet:",
+                        error
+                    );
+                }
+            });
+        }
+    });
 }
 modalWorksGet();
 
-//fonction pour récupérer les categories du formulaire de la modale
+//récupérer les categories du formulaire de la modale
 async function modalCategoriesGet() {
     const categories = await fetch("http://localhost:5678/api/categories").then(
         (response) => response.json()
@@ -155,7 +209,7 @@ async function modalCategoriesGet() {
 }
 modalCategoriesGet();
 
-//fonction pour ajouter un projet via le formulaire de la modale
+//ajouter un projet via le formulaire de la modale
 async function workAdd(e) {
     e.preventDefault();
     if (!token) {
@@ -183,6 +237,32 @@ async function workAdd(e) {
         console.error("Erreur lors de l'ajout du projet:", error);
     }
 }
+
+//boutons pour filtrer les projets sur la page d'accueil
+filtersBtn[0].addEventListener("click", () => {
+    filterClassRemove();
+    worksRemove();
+    worksGet();
+    filtersBtn[0].classList.add("filter-btn-active");
+});
+
+filtersBtn[1].addEventListener("click", () => {
+    filterClassRemove();
+    worksFilter((category = 1));
+    filtersBtn[1].classList.add("filter-btn-active");
+});
+
+filtersBtn[2].addEventListener("click", () => {
+    filterClassRemove();
+    worksFilter((category = 2));
+    filtersBtn[2].classList.add("filter-btn-active");
+});
+
+filtersBtn[3].addEventListener("click", () => {
+    filterClassRemove();
+    worksFilter((category = 3));
+    filtersBtn[3].classList.add("filter-btn-active");
+});
 
 //bouton pour ajouter un projet
 modalForm.addEventListener("submit", (e) => {
