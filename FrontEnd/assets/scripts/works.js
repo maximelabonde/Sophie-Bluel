@@ -21,10 +21,13 @@ const worksGallery = document.querySelector(".gallery");
 const editMode = document.querySelector("#edit-mode");
 const filtersBtn = document.querySelectorAll(".filter-btn");
 
+//variable du token d'authentification
+const token = localStorage.getItem("token");
+
 //changer la page d'accueil si le token est dans le localStorage
 function indexChanges() {
     if (token) {
-        loginBtn.textContent = "logout";
+        loginNav.textContent = "logout";
         modalEditBtn.style.display = "flex";
         editMode.style.display = "flex";
         worksFilters.style.display = "none";
