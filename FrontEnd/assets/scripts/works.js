@@ -156,8 +156,8 @@ function modalWorksGet() {
             worksElement.appendChild(imgElement);
             worksElement.appendChild(iconElement);
 
-            //bouton pour supprimer un projet du back-end
-            iconElement.addEventListener("click", async function () {
+            //boutons pour supprimer un projet du back-end
+            iconElement.addEventListener("click", async () => {
                 if (!token) {
                     console.error("Token non trouvé");
                     return;
