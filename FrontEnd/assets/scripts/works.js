@@ -21,9 +21,6 @@ const worksGallery = document.querySelector(".gallery");
 const editMode = document.querySelector("#edit-mode");
 const filtersBtn = document.querySelectorAll(".filter-btn");
 
-//variable du token d'authentification
-const token = localStorage.getItem("token");
-
 //changer la page d'accueil si le token est dans le localStorage
 function indexChanges() {
     if (token) {
@@ -105,19 +102,15 @@ function formReset() {
 function worksFilter(category) {
     worksLoad().then(() => {
         let filteredData;
-        if (category === 1) {
-            filteredData = data.filter(function (work) {
+        filteredData = data.filter((work) => {
+            if (category === 1) {
                 return work.categoryId === 1;
-            });
-        } else if (category === 2) {
-            filteredData = data.filter(function (work) {
+            } else if (category === 2) {
                 return work.categoryId === 2;
-            });
-        } else if (category === 3) {
-            filteredData = data.filter(function (work) {
+            } else if (category === 3) {
                 return work.categoryId === 3;
-            });
-        }
+            }
+        });
         worksRemove();
         for (let i = 0; i < filteredData.length; i++) {
             const worksElement = document.createElement("figure");
