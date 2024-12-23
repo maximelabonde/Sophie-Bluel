@@ -98,7 +98,6 @@ function formReset() {
     checkIfFormIsValide();
 }
 
-
 //intégrer les projets dans la galerie de la page d'accueil
 function getWorks() {
     loadWorks().then(() => {
