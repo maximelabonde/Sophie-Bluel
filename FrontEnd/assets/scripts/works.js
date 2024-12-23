@@ -98,6 +98,24 @@ function formReset() {
     checkIfFormIsValide();
 }
 
+
+//intégrer les projets dans la galerie de la page d'accueil
+function getWorks() {
+    loadWorks().then(() => {
+        for (let i = 0; i < data.length; i++) {
+            const worksElement = document.createElement("figure");
+            const imgElement = document.createElement("img");
+            const titleElement = document.createElement("figcaptionp");
+            imgElement.src = data[i].imageUrl;
+            titleElement.innerText = data[i].title;
+            worksGallery.appendChild(worksElement);
+            worksElement.appendChild(imgElement);
+            worksElement.appendChild(titleElement);
+        }
+    });
+}
+getWorks();
+
 //filtrer les projets par catégories
 function worksFilter(category) {
     if (category === 0) {
@@ -129,23 +147,6 @@ function worksFilter(category) {
         }
     });
 }
-
-//intégrer les projets dans la galerie de la page d'accueil
-function getWorks() {
-    loadWorks().then(() => {
-        for (let i = 0; i < data.length; i++) {
-            const worksElement = document.createElement("figure");
-            const imgElement = document.createElement("img");
-            const titleElement = document.createElement("figcaptionp");
-            imgElement.src = data[i].imageUrl;
-            titleElement.innerText = data[i].title;
-            worksGallery.appendChild(worksElement);
-            worksElement.appendChild(imgElement);
-            worksElement.appendChild(titleElement);
-        }
-    });
-}
-getWorks();
 
 //intégrer les projets dans la galerie de la modale
 function getModalWorks() {
