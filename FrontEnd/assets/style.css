@@ -3,19 +3,87 @@
    License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -25,8 +93,17 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
 
@@ -34,16 +111,20 @@ body {
 	line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
 	list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
 	quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
@@ -336,7 +417,8 @@ li:hover {
 	left: 0;
 }
 
-#modal .projects-remove, .projects-add {
+#modal .projects-remove,
+.projects-add {
 	justify-self: center;
 	width: 420px;
 	height: 445px;
@@ -384,8 +466,9 @@ li:hover {
 	gap: 9px;
 }
 
-#modal input, select {
-	height: 50px;
+#modal input,
+select {
+	height: 36px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -425,7 +508,7 @@ input[type="submit"] {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="file"]::-webkit-file-upload-button{
+input[type="file"]::-webkit-file-upload-button {
 	display: none;
 }
 
@@ -455,7 +538,8 @@ input[type="submit"] {
 	color: white;
 	background-color: #1D6154;
 	margin: 2em auto;
-	width: 237px;;
+	width: 237px;
+	;
 	border-radius: 60px;
 }
 
@@ -481,8 +565,8 @@ input[type="submit"]:hover {
 	border-radius: 60px;
 }
 
-.projects-add input[value="Valider"] {
-	margin-top: 65px;
+#modal .projects-add input[value="Valider"] {
+	margin-top: 95px;
 	background-color: #A7A7A7;
 }
 
@@ -491,4 +575,3 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
-
