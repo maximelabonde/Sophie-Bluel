@@ -1,4 +1,4 @@
-# Portfolio-architecte-sophie-bluel
+# Portfolio de Sophie Bluel
 
 Code du projet 6 d'intégrateur web.
 
